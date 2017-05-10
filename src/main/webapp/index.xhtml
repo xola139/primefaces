@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h1>Hello World PrimeFaces</h1>
+
+	<h:form>
+		<!-- p:editor value="#{editor.value}" /> -->
+		<p:selectManyCheckbox id="basic" value="#{EditorBean.selectedConsoles}">
+        	<f:selectItem itemLabel="lacomer" itemValue="lacomer" />
+        	<f:selectItem itemLabel="fresko" itemValue="fresko" />
+        	<f:selectItem itemLabel="city" itemValue="city" />
+        	<f:ajax  listener="#{EditorBean.ajaxListener}" update="mypickList" />
+    	</p:selectManyCheckbox>
+    	
+    	<p:pickList id="mypickList" value="#{EditorBean.theList}" 
+    	var="theList" itemLabel="#{theList}" itemValue="#{theList}" >
+    	<f:facet name="sourceCaption">Available</f:facet>
+        <f:facet name="targetCaption">Starting</f:facet>
+    	</p:pickList>
+ 	
+ 		<p:growl id="growl" life="2000" />
+ 
+ 		<p:commandButton value="With Icon" id="withIcon" 
+ 		actionListener="#{EditorBean.exampleListener}" update="growl"  />
+		
+	
+	
+	</h:form>
+
+</h:body>
+</html>

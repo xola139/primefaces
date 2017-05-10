@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h1>Validate Form</h1>
+	<h:form id="dialogForm">
+    <p:growl id="growl" />
+ 
+    <h3 style="margin-top:0">Basic</h3>
+    <p:panel id="pnl" header="New User" style="margin-bottom:10px;">
+        <!-- p:messages id="messages" /-->
+        <h:panelGrid columns="3" cellpadding="5">
+            <h:outputLabel for="firstname" value="Firstname: *" />
+            <p:inputText id="firstname" value="#{blockUIView.firstname}" required="true" label="Firstname">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="firstname" />
+ 
+            <h:outputLabel for="lastname" value="Lastname: *" />
+            <p:inputText id="lastname" value="#{blockUIView.lastname}" required="true" label="Lastname"/>
+            <p:message for="lastname" />
+        </h:panelGrid>
+ 
+        <p:commandButton id="saveBtn" value="Save" icon="ui-icon-check" style="margin:0" 
+        actionListener="#{blockUIView.save}"  update="@this, :dialogForm"  
+        />
+    </p:panel>
+    
+ 	<p:dialog header="Modal Dialog" widgetVar="dlg2" modal="true" height="100" id="dialogTest" >
+    	<h:outputText value="This is a Modal Dialog." />
+	</p:dialog>
+ 
+    <p:blockUI block="pnl" trigger="saveBtn" />
+    </h:form>
+	
+</h:body>
+</html>
